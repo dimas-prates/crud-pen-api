@@ -1,0 +1,9 @@
+{
+  "name": "crud-pen-api",
+  "version": "1.0.0",
+  "description": "Project destined to practice development by layers",
+  "main": "./build/index.js",
+  "repository": "https://github.com/dimas-prates/crud-pen-api",
+  "author": "Dimas Prates",
+  "license": "MIT"
+}
