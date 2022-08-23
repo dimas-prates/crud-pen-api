@@ -1,0 +1,30 @@
+version: '3.7'
+services:
+  application-development:
+    container_name: ${APP_NAME}-dev
+    image: ${APP_NAME}-development:${APP_VERSION}
+    restart: unless-stopped
+    build:
+      context: .
+      target: development
+      dockerfile: ./Dockerfile
+    volumes:
+      - .:/opt/app
+      - /opt/app/node_modules
+    ports:
+      - 5001:${PORT}
+
+  application-production:
+    container_name: ${APP_NAME}-prd
+    image: ${APP_NAME}-production:${APP_VERSION}
+    restart: unless-stopped
+    build:
+      context: .
+      target: production
+      dockerfile: ./Dockerfile
+    volumes:
+      - .:/opt/app
+      - /opt/app/node_modules
+      - /opt/app/build
+    ports:
+      - 5000:${PORT}
