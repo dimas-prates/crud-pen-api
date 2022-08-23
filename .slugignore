@@ -1,0 +1,15 @@
+# Compiled folders
+node_modules/
+build/
+#Env files and samples
+.env.sample
+.env
+# Version Control
+.gitignore
+.git/
+#Markdown files
+*.md
+#Docker
+.dockerignore
+docker-compose.yml
+Dockerfile
