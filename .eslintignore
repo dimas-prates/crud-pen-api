@@ -1,3 +1,7 @@
-**/*.js
+# Compiled folders
 node_modules
-build
+dist/
+build/
+**/*.js
+# Version Control
+.git/
