@@ -1,5 +1,6 @@
 # Compiled folders
-node_modules/
+node_modules
+dist/
 build/
 #Env files and samples
 .env.sample
@@ -13,3 +14,7 @@ build/
 .dockerignore
 docker-compose.yml
 Dockerfile
+#Linting
+.eslintignore
+.eslintrc.json
+.editorconfig
