@@ -1,10 +1,10 @@
 import { Router } from "express";
-import categoryRoute from "./categoryRoute"
-import videoRoute from './videoRoute'
+import categoryRoute from "./categoryRoute";
+import videoRoute from "./videoRoute";
 
-const router = Router()
+const router = Router();
 
-router.use('/category', categoryRoute)
-router.use('/video', videoRoute)
+router.use("/category", categoryRoute);
+router.use("/video", videoRoute);
 
-export default router
+export default router;
