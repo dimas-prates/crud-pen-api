@@ -17,3 +17,7 @@ tsconfig.tsbuildinfo
 #Heroku files
 Procfile
 .slugignore
+#Linting
+.eslintignore
+.eslintrc.json
+.editorconfig
