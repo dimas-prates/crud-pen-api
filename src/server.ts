@@ -2,11 +2,13 @@ import app from "./app";
 import Database from "./data-source";
 
 const appPort = process.env.PORT || 3000;
+const processId = process.pid;
+
 const server = app.listen(appPort, () => {
 	console.log(`\nApplication environment: ${process.env.NODE_ENV}`);
 	console.log(`Application PORT: ${appPort}`);
 	console.log(`Application node version: ${process.versions.node}`);
-	console.log(`Application process(PID): ${process.pid}`);
+	console.log(`Application process(PID): ${processId}`);
 });
 
 Database.initialize().then((connection) => {
@@ -19,7 +21,7 @@ function gracefulShutdown(event: string) {
 			await Database.destroy();
 			console.log(`\nApplication uptime: ${Math.floor(process.uptime())} seconds`);
 			console.log(`Application signal received: ${event}`);
-			console.log(`Application process(PID): ${process.pid} terminated`);
+			console.log(`Application process(PID): ${processId} terminated`);
 			console.log(`Database status: ${Database.isInitialized ? "connected" : "disconnect"}\n`);
 			process.exit(0);
 		});
