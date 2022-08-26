@@ -1,10 +1,5 @@
-import { AppDataSource } from "../data-source";
+import AppDataSource from "../data-source";
 import { Category } from "../entities/Category";
-type CategoryUpdateRequest = {
-    id: string;
-    name: string;
-    description: string;
-}
 
 export class GetCategoryService {
 	async execute(id: string) {
