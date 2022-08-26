@@ -1,20 +1,31 @@
 # Compiled folders
-node_modules
+node_modules/
 dist/
 build/
-#Env files and samples
+# Logs
+yarn-debug.log
+yarn-error.log
+tsconfig.tsbuildinfo
+#Files samples
 .env.sample
-.env
 # Version Control
 .gitignore
 .git/
 #Markdown files
-*.md
-#Docker
-.dockerignore
-docker-compose.yml
-Dockerfile
+.md
+!README*.md
+#Heroku files
+Procfile
+.slugignore
 #Linting
 .eslintignore
 .eslintrc.json
 .editorconfig
+#tests
+src/tests/
+jest.config.ts
+tests/
+#Docker
+.dockerignore
+docker-compose.yml
+Dockerfile
