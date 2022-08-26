@@ -1,12 +1,12 @@
-import { AppDataSource } from "../data-source";
+import AppDataSource from "../data-source";
 import { Category } from "../entities/Category";
 import { Video } from "../entities/Video";
 
 type VideoRequest = {
-    name: string;
-    description: string;
-    duration: number;
-    category_id: string;
+	name: string;
+	description: string;
+	duration: number;
+	category_id: string;
 }
 
 export class CreateVideoService {
@@ -22,4 +22,3 @@ export class CreateVideoService {
 		return video;
 	}
 }
-
