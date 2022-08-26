@@ -6,7 +6,7 @@ const { DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, DB_NAME } = process.env;
 const migrationsDir = `${__dirname}/**/migrations/*.{ts,js}`;
 const entitiesDir = `${__dirname}/**/entities/*.{ts,js}`;
 
-export const AppDataSource = new DataSource({
+const AppDataSource = new DataSource({
 	type: "postgres",
 	host: DB_HOST,
 	port: Number(DB_PORT),
@@ -19,3 +19,5 @@ export const AppDataSource = new DataSource({
 	migrations: [migrationsDir],
 	// subscribers: [],
 });
+
+export default AppDataSource;
