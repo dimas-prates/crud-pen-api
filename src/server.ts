@@ -1,18 +1,39 @@
 import app from "./app";
-import { AppDataSource } from "./data-source";
+import Database from "./data-source";
 
 const appPort = process.env.PORT || 3000;
-const server = app.listen(appPort, () => { console.log(`\nServer's running on port ${appPort}\n`); });
+const server = app.listen(appPort, () => {
+	console.log(`\nApplication environment: ${process.env.NODE_ENV}`);
+	console.log(`Application PORT: ${appPort}`);
+	console.log(`Application node version: ${process.versions.node}`);
+	console.log(`Application process(PID): ${process.pid}`);
+});
 
-AppDataSource.initialize().then((connection) => {
+Database.initialize().then((connection) => {
 	const { type, database } = connection.options;
-	console.log(`Database connection "${type}-> ${database}": ${connection.isInitialized}\n`);
+	console.log(`Database ${database} (${type}): ${connection.isInitialized ? "connected" : "disconnect"}\n`);
 }).catch((error) => { console.log(error); });
+function gracefulShutdown(event: string) {
+	return () => {
+		server.close(async () => {
+			await Database.destroy();
+			console.log(`\nApplication uptime: ${Math.floor(process.uptime())} seconds`);
+			console.log(`Application signal received: ${event}`);
+			console.log(`Application process(PID): ${process.pid} terminated`);
+			console.log(`Database status: ${Database.isInitialized ? "connected" : "disconnect"}\n`);
+			process.exit(0);
+		});
+	};
+}
 
-process.on("SIGINT", () => {
-	server.close();
-	console.log("\nSever has been terminated\n");
-	AppDataSource.destroy().then(() => {
-		console.log("Database connection lost\n");
-	}).catch((error) => { console.log(error); });
+process.on("SIGTERM", gracefulShutdown("SIGTERM"));
+process.on("SIGINT", gracefulShutdown("SIGINT"));
+
+process.on("uncaughtException", (error, origin) => {
+	console.log(`${origin}\n${error}`);
+	process.exit(1);
+});
+process.on("unhandledRejection", (reason) => {
+	console.log(`unhandledRejection: ${reason}`);
+	process.exit(1);
 });
