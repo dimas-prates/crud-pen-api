@@ -15,6 +15,7 @@ Database.initialize().then((connection) => {
 	const { type, database } = connection.options;
 	console.log(`Database ${database} (${type}): ${connection.isInitialized ? "connected" : "disconnect"}\n`);
 }).catch((error) => { console.log(error); });
+
 function gracefulShutdown(event: string) {
 	return () => {
 		server.close(async () => {
